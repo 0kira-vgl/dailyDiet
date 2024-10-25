@@ -1,28 +1,16 @@
-import { Image, Pressable, View } from "react-native";
-import LogoImg from "../assets/logo/logo.png";
-import { useNavigation } from "@react-navigation/native";
-import { ChevronLeft } from "lucide-react-native";
+import { Image, View } from "react-native";
+import LogoImg from "@/assets/logo/logo.png";
+import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
 
-type HeaderProps = {
-  showBackButton?: boolean;
-};
-
-export function Header({ showBackButton = false }: HeaderProps) {
-  const navigation = useNavigation();
-
-  function handleGoHome() {
-    navigation.navigate("home");
-  }
-
+export function Header() {
   return (
-    <View className="w-full flex-row items-center justify-center">
-      {showBackButton && (
-        <Pressable className="flex-1" onPress={handleGoHome}>
-          <ChevronLeft size={40} color="#fff" />
-        </Pressable>
-      )}
+    <View className="flex-row items-center justify-between pt-3 pb-12">
+      <Image source={LogoImg} className="w-24 h-10" />
 
-      <Image source={LogoImg} className="w-11 h-14" />
+      <Avatar className="size-11 border">
+        <AvatarImage source={{ uri: "https://github.com/0kira-vgl.png" }} />
+        <AvatarFallback>A</AvatarFallback>
+      </Avatar>
     </View>
   );
 }
