@@ -1,9 +1,12 @@
 import { ArrowUpRight } from "lucide-react-native";
-import { View, Text } from "react-native";
+import { View, Text, Pressable, PressableProps } from "react-native";
 
-export function PercentCard() {
+export function PercentCard({ ...rest }: PressableProps) {
   return (
-    <View className="w-full h-36 bg-[#E5F0DB] rounded-lg flex-col items-center justify-center">
+    <Pressable
+      {...rest}
+      className="w-full h-36 bg-[#E5F0DB] rounded-lg flex-col items-center justify-center"
+    >
       <View className="absolute top-4 right-4">
         <ArrowUpRight color="#639339" size={25} />
       </View>
@@ -11,6 +14,6 @@ export function PercentCard() {
       <Text className="text-lg text-[#333638]">
         das refeições dentro da dieta
       </Text>
-    </View>
+    </Pressable>
   );
 }
