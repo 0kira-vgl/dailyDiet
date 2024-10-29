@@ -3,10 +3,11 @@ import { Header } from "@/components/Header";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { PercentCard } from "@/components/PercentCard";
 import { Plus } from "lucide-react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FoodCard } from "@/components/FoodCard";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Button } from "@/components/Button";
+import { MealsGetAll } from "@/storage/meal/MealsGetAll";
 
 export function Home() {
   const [foods, setFoods] = useState<string[]>([]);
@@ -20,6 +21,21 @@ export function Home() {
     navigation.navigate("newMeal"); // navegação para quando o usuário clicar no botão
   }
 
+  async function fetchMeals() {
+    try {
+      const data = await MealsGetAll(); // pega a lista de groups
+      setFoods(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals(); // carrega as grupos ao iniciar a tela
+    }, [])
+  );
+
   return (
     <SafeAreaView
       style={{
@@ -32,15 +48,13 @@ export function Home() {
       <PercentCard onPress={handleStatusScreen} />
 
       <Text className="text-lg mt-10 mb-2">Refeições</Text>
-      {/* <Pressable
+      <Pressable
         onPress={handleNewMealScreen}
         className="w-full bg-gray-800 h-16 rounded-md justify-center items-center flex-row gap-2"
       >
         <Plus size={24} color="#fafafa" />
         <Text className="text-zinc-50 text-lg font-bold">Nova refeição</Text>
-      </Pressable> */}
-
-      <Button title="Nova refeição" variant="secondary" />
+      </Pressable>
 
       <FlatList
         className="mt-9"

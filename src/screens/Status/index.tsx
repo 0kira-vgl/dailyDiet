@@ -30,14 +30,14 @@ export function Status() {
         </View>
 
         <View className="justify-between items-center flex-row gap-5">
-          <View className="items-center justify-center bg-[#EFF0F0] rounded-lg h-28 w-40 py-9 px-5 flex-1">
+          <View className="items-center justify-center bg-[#E5F0DB] rounded-lg h-28 w-40 py-9 px-5 flex-1">
             <Text className="font-bold text-2xl pb-1.5">99</Text>
             <Text className="text-lg text-[#333638]">
               refeições dentro da dieta
             </Text>
           </View>
 
-          <View className="items-center justify-center bg-[#EFF0F0] rounded-lg h-28 w-40 py-9 px-5 flex-1">
+          <View className="items-center justify-center bg-[#F4E6E7] rounded-lg h-28 w-40 py-9 px-5 flex-1">
             <Text className="font-bold text-2xl pb-1.5">10</Text>
             <Text className="text-lg text-[#333638]">
               refeições fora da dieta
