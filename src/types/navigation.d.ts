@@ -4,6 +4,7 @@ export declare global {
       home: undefined;
       status: undefined;
       newMeal: undefined;
+      nextNewMeal: undefined;
     }
   }
 }

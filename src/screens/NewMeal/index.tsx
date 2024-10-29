@@ -23,7 +23,7 @@ export function NewMeal() {
       } // verica se o input está vazio e não conta os espaços
 
       await mealCreate(meal); // armazena o groupo no local storage
-      // navigation.navigate("players");
+      navigation.navigate("nextNewMeal");
     } catch (error) {
       throw error;
     }
