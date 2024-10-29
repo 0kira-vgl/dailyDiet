@@ -1,9 +1,21 @@
-import { Text } from "react-native";
+import { Text, TextInputProps } from "react-native";
+import { twMerge } from "tailwind-merge";
 
-type LabelProps = {
+type LabelProps = TextInputProps & {
   title: string;
 };
 
-export function Label({ title }: LabelProps) {
-  return <Text className="text-lg font-bold text-[#333638] mb-1">{title}</Text>;
+export function Label({
+  title,
+  className,
+  ...rest
+}: LabelProps & { className?: string }) {
+  return (
+    <Text
+      {...rest}
+      className={twMerge("text-lg font-bold text-[#333638] mb-1", className)}
+    >
+      {title}
+    </Text>
+  );
 }

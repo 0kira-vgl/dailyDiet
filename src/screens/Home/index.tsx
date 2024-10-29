@@ -32,13 +32,15 @@ export function Home() {
       <PercentCard onPress={handleStatusScreen} />
 
       <Text className="text-lg mt-10 mb-2">Refeições</Text>
-      <Pressable
+      {/* <Pressable
         onPress={handleNewMealScreen}
         className="w-full bg-gray-800 h-16 rounded-md justify-center items-center flex-row gap-2"
       >
         <Plus size={24} color="#fafafa" />
         <Text className="text-zinc-50 text-lg font-bold">Nova refeição</Text>
-      </Pressable>
+      </Pressable> */}
+
+      <Button title="Nova refeição" variant="secondary" />
 
       <FlatList
         className="mt-9"
