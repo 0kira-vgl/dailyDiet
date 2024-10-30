@@ -1,17 +1,25 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable, PressableProps } from "react-native";
 
-export function FoodCard() {
+type FoodCardProps = PressableProps & {
+  title: string;
+  hour: string;
+};
+
+export function FoodCard({ title, hour, ...rest }: FoodCardProps) {
   return (
-    <View className="flex-row border justify-between mb-3 items-center rounded-md h-14 border-[#DDDEDF] p-4">
+    <Pressable
+      {...rest}
+      className="flex-row border justify-between mb-3 items-center rounded-md h-14 border-[#DDDEDF] p-4"
+    >
       <View className="flex-row items-center justify-center">
-        <Text className="font-bold">20:00</Text>
+        <Text className="font-bold">{hour}</Text>
 
         <View className="h-4 bg-[#B9BBBC] w-px mx-4" />
 
-        <Text>Whey protein com leite</Text>
+        <Text>{title}</Text>
       </View>
 
       <View className="size-4 bg bg-[#CBE4B4] rounded-full" />
-    </View>
+    </Pressable>
   );
 }

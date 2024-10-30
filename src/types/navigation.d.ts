@@ -4,7 +4,13 @@ export declare global {
       home: undefined;
       status: undefined;
       newMeal: undefined;
-      nextNewMeal: undefined;
+      nextNewMeal: {
+        meal: string;
+        withinDiet: boolean;
+      };
+      mealDetails: {
+        withinDiet: boolean;
+      };
     }
   }
 }

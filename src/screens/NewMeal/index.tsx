@@ -9,6 +9,10 @@ import { View, Text, Pressable, Alert } from "react-native";
 
 export function NewMeal() {
   const [meal, setMeal] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [hour, setHour] = useState("");
+  const [withinDiet, setWithinDiet] = useState<boolean | null>(null); // aceita true, false ou null
   const navigation = useNavigation();
 
   async function handleHomeScreen() {
@@ -19,11 +23,16 @@ export function NewMeal() {
   async function handleNewMeal() {
     try {
       if (meal.trim().length === 0) {
-        return Alert.alert("Novo Grupo", "Informe o nome da grupo.");
-      } // verica se o input está vazio e não conta os espaços
+        return Alert.alert("Novo Grupo", "Informe o nome do grupo.");
+      }
 
-      await mealCreate(meal); // armazena o groupo no local storage
-      navigation.navigate("nextNewMeal");
+      await mealCreate(meal);
+
+      // Garante que withinDiet seja booleano, definindo-o como false se estiver null
+      navigation.navigate("nextNewMeal", {
+        meal,
+        withinDiet: withinDiet ?? false,
+      });
     } catch (error) {
       throw error;
     }
@@ -43,13 +52,14 @@ export function NewMeal() {
       <View className="px-7 pt-12">
         <View className="mb-8">
           <Label title="Nome" />
-          <Input onChangeText={setMeal} />
+          <Input value={meal} onChangeText={setMeal} />
         </View>
 
         <View className="mb-8">
           <Label title="Descrição" />
           <Input
-            onChangeText={setMeal}
+            value={description}
+            onChangeText={setDescription}
             multiline // transforma em um "textarea"
             className="h-36"
             style={{
@@ -61,26 +71,32 @@ export function NewMeal() {
         <View className="mb-8 justify-between flex-row gap-7">
           <View className="flex-1">
             <Label title="Data" />
-            <Input onChangeText={setMeal} placeholder="dd/mm/aaaa" />
+            <Input
+              value={date}
+              onChangeText={setDate}
+              placeholder="dd/mm/aaaa"
+            />
           </View>
 
           <View className="w-36 flex-1">
             <Label title="Hora" />
-            <Input onChangeText={setMeal} placeholder="hh:mm" />
+            <Input value={hour} onChangeText={setHour} placeholder="hh:mm" />
           </View>
         </View>
 
         <Label title="Está dentro da dieta?" />
         <View className="ustify-between flex-row gap-7">
-          <YesButton />
-          <NoButton />
+          <YesButton onPress={() => setWithinDiet(true)} />
+          <NoButton onPress={() => setWithinDiet(false)} />
         </View>
 
         <Pressable
           onPress={handleNewMeal}
           className="w-full bg-gray-800 h-16 rounded-md justify-center items-center flex-row gap-2 mt-20"
         >
-          <Text className="text-zinc-50 text-lg font-bold">Nova refeição</Text>
+          <Text className="text-zinc-50 text-lg font-bold">
+            Cadastrar refeição
+          </Text>
         </Pressable>
       </View>
     </View>

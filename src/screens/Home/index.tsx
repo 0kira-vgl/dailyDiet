@@ -21,6 +21,10 @@ export function Home() {
     navigation.navigate("newMeal"); // navegação para quando o usuário clicar no botão
   }
 
+  function handleOpenMeal(meal: string) {
+    navigation.navigate("mealDetails", { meal }); // abre a lista de pessoas no grupo
+  }
+
   async function fetchMeals() {
     try {
       const data = await MealsGetAll(); // pega a lista de groups
@@ -56,14 +60,21 @@ export function Home() {
         <Text className="text-zinc-50 text-lg font-bold">Nova refeição</Text>
       </Pressable>
 
+      <Text className="text-lg font-bold mt-9 mb-1.5">12/08/22</Text>
+
       <FlatList
-        className="mt-9"
         data={foods}
         scrollEnabled={true}
         keyExtractor={(item, index) => item + index}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={foods.length === 0 && { flex: 1 }} // "centraliza" o ListEmpty caso a lista estiver vazia
-        renderItem={({ item }) => <FoodCard />}
+        renderItem={({ item }) => (
+          <FoodCard
+            onPress={() => handleOpenMeal(item)}
+            title={item}
+            hour={item}
+          />
+        )}
         ListEmptyComponent={() => {
           return (
             <View>
