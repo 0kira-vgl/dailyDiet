@@ -49,7 +49,11 @@ export function Home() {
       }}
     >
       <Header />
-      <PercentCard onPress={handleStatusScreen} />
+      <PercentCard
+        onPress={handleStatusScreen}
+        title="90,86"
+        subtitle="das refeições dentro da dieta"
+      />
 
       <Text className="text-lg mt-10 mb-2">Refeições</Text>
       <Pressable
