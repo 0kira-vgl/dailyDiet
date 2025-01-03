@@ -1,8 +1,8 @@
-import { Pressable, PressableProps, Text } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, Text } from "react-native";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
-type ButtonProps = PressableProps & {
+type ButtonProps = TouchableOpacityProps & {
   title: string;
   variant?: "primary" | "secondary";
 };
@@ -32,13 +32,14 @@ export function Button({
   ...rest
 }: ButtonProps & { className?: string }) {
   return (
-    <Pressable
-      {...rest}
+    <TouchableOpacity
+      activeOpacity={0.5}
       className={twMerge(button({ color: variant }), className)}
+      {...rest}
     >
       <Text className={twMerge(button({ text: variant }), className)}>
         {title}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }

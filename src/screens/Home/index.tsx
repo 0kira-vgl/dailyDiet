@@ -1,12 +1,11 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Header } from "@/components/Header";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, TouchableOpacity, Text, View } from "react-native";
 import { PercentCard } from "@/components/PercentCard";
 import { Plus } from "lucide-react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FoodCard } from "@/components/FoodCard";
 import { useCallback, useState } from "react";
-import { Button } from "@/components/Button";
 import { MealsGetAll } from "@/storage/meal/MealsGetAll";
 
 export function Home() {
@@ -56,13 +55,14 @@ export function Home() {
       />
 
       <Text className="text-lg mt-10 mb-2">Refeições</Text>
-      <Pressable
+      <TouchableOpacity
+        activeOpacity={0.5}
         onPress={handleNewMealScreen}
         className="w-full bg-gray-800 h-16 rounded-md justify-center items-center flex-row gap-2"
       >
         <Plus size={24} color="#fafafa" />
         <Text className="text-zinc-50 text-lg font-bold">Nova refeição</Text>
-      </Pressable>
+      </TouchableOpacity>
 
       <Text className="text-lg font-bold mt-9 mb-1.5">12/08/22</Text>
 
